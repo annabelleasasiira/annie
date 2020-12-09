@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">annie</string>
+    <string name="Name">Name</string>
+    <string name="Date">Date</string>
+    <string name="University">University</string>
+    <string name="One">One</string>
+    <string name="Two">Two</string>
+    <string name="Three">Three</string>
+</resources>
