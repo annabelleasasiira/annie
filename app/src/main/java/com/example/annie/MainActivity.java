@@ -19,7 +19,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Annabelle Asasiira
+    //Annabelle Asasiira - 2018/BIT/027/PS
+
+    //annie application
 
 
     private MyReceiver receive = new MyReceiver() {
