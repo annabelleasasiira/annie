@@ -6,6 +6,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,6 +25,14 @@ public class MainActivity extends AppCompatActivity {
     //annie application
 
 
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        registerReceiver(receive,new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+    }
+
+
     private MyReceiver receive = new MyReceiver() {
 
         public void onReceive(Context c, Intent i) {
@@ -36,14 +45,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-        }
+
 
         public void sendMessage(View view) {
             EditText message = (EditText) findViewById(R.id.message);
-            Intent intent = new Intent(this, DisplayMessageActivity.class);
+            Intent intent = new Intent(MainActivity.this, DisplayMessageActivity.class);
             intent.putExtra("MESSAGE", message.getText().toString());
             startActivity(intent);
             message.setText("");
@@ -64,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
             int id = item.getItemId();
 
             if (id == R.id.menu_one) {
-                Intent myintent = new Intent(this, four.class);
-                this.startActivity(myintent);
+                Intent myintent = new Intent(MainActivity.this, four.class);
+                startActivity(myintent);
                 return true;
             }
 
@@ -79,22 +85,17 @@ public class MainActivity extends AppCompatActivity {
                 intent2.setType("message/rfc822");
                 startActivity(intent2);
                 return true;
-
-
-                return super.onOptionsItemSelected(item);
             }
 
-            public void onClick (View view){
-                EditText editText = findViewById(R.id.alar);
-                int b = Integer.parseInt(editText.getText().toString());
-                Intent intent = new Intent(getApplicationContext(), MyReceiver.class);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), 0, intent, 0);
-                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (b * 1000), pendingIntent);
-                Toast.makeText(this, "alarm set in" + b + "seconds", Toast.LENGTH_LONG).show();
+                return MainActivity.super.onOptionsItemSelected(item);
+
+
+
             }
 
-        }
+
+
+
     };
 
 }

@@ -4,9 +4,10 @@
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SEND_SMS" /> //permits the phone to send SMS
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> //adds data to the phones external storage
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> //fetches data from phone external storage
+
 
     <application
         android:allowBackup="true"
@@ -15,9 +16,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InternalStorage"></activity>
+        <activity android:name=".userdetails"></activity>
+        <activity android:name=".Registration" />
+        <activity android:name=".Login" />
+        <activity android:name=".InternalStorage" />
         <activity android:name=".ExternalStorage" />
         <activity android:name=".Additional" />
+        <activity android:name=".RuntimePermissions"/> //application Activities registered
 
         <service
             android:name=".MyService"
@@ -41,9 +46,15 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER" /> //specifies the activity to launch first
             </intent-filter>
         </activity>
+
+        <provider
+            android:authorities="com.example.annie.dataprovider"
+            android:name="com.example.annie.dataprovider">
+        </provider> //content provider named dataprovider
+
     </application>
 
 </manifest>
